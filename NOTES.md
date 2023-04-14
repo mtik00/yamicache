@@ -12,3 +12,9 @@
     NOTE: This will push any checked-in changes and the new tag
 1.  build the packages: `python manage.py build dist`
 1.  upload to pypi: `twine upload dist/*`
+
+## Documentation
+
+The build and release process for readthedocs is not automated.  The easiest way to do this is to log in to RTD, head to the project, and build it.
+
+https://readthedocs.org/projects/yamicache/
