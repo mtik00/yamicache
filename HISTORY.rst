@@ -2,7 +2,13 @@
 History
 =======
 
-0.7.1 (2023-04-14)
+0.7.3 (2023-04-14)
+------------------
+
+* Removing debug `print()`
+
+
+0.7.2 (2023-04-14)
 ------------------
 
 * Adding mypy stub files to distribution

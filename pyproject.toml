@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "yamicache"
-version = "0.7.2"
+version = "0.7.3"
 description = "Yet another in-memory caching package"
 authors = ["Timothy McFadden <mtik00@users.noreply.github.com>"]
 license = "MIT"
