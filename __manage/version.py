@@ -85,7 +85,7 @@ def rev_version():
                     match.group(0), version.replace.format(version=new_ver), text
                 )
                 with open(fpath, "wb") as fh:
-                    fh.write(text)
+                    fh.write(text.encode("utf-8"))
                 click.echo("updated %s" % fpath)
             else:
                 click.echo("would have updated %s" % fpath)

@@ -3,6 +3,6 @@
 """Top-level package for yamicache."""
 
 __author__ = """Timothy McFadden"""
-__version__ = "0.6.0"
+__version__ = '0.7.0'
 
 from .yamicache import Cache, nocache, override_timeout  # noqa: F401
