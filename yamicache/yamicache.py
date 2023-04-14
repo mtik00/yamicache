@@ -161,8 +161,6 @@ class Cache(collections.abc.MutableMapping):
 
     def _from_timestamp(self, timestamp: str) -> float:
         """Convert a timestamp string to an epoch value"""
-        print("_from_timestamp:", timestamp)
-        # Fri Apr 14 09:50:20 2023
         return time.mktime(time.strptime(timestamp))
 
     def _to_timestamp(self, epoch: Optional[float] = None) -> str:
