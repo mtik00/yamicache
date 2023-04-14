@@ -1,4 +1,5 @@
 /instance
+/.direnv
 
 # Ignoring pipenv files for now
 Pipfile
