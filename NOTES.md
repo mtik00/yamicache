@@ -3,7 +3,7 @@
 ## Deploying
 
 1.  Make sure all tests pass:  
-`coverage run --source=yamicache -p -m py.test && coverage combine && coverage report -m`
+`coverage run --source=yamicache -p -m pytest && coverage combine && coverage report -m`
 1.  push to GitHub
 1.  bump the version: `python manage.py ver rev`
 1.  update `HISTORY.rst` with the new version information
