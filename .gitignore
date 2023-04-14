@@ -1,5 +1,6 @@
 /instance
 /.direnv
+/.mypy-stubs
 
 # Ignoring pipenv files for now
 Pipfile

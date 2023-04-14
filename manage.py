@@ -72,7 +72,10 @@ def build_all():
 def build_dist():
     """Build the distribution"""
     run_command(["rm", "dist/*"])
+    (text, returncode) = run_command(["stubgen", "yamicache", "-o", "mypy-stubs"])
+    print(run_command("cp ./mypy-stubs/yamicache/* yamicache/", shell=True))
     (text, returncode) = run_command(["poetry", "build"])
+    print(run_command("rm yamicache/*.pyi yamicache/py.typed", shell=True))
 
 
 def deploy():
