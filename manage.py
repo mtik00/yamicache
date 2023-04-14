@@ -72,42 +72,7 @@ def build_all():
 
 def build_dist():
     """Build the distribution"""
-    (text, returncode) = run_command(["rm", "-f", "dist/*"])
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    (text, returncode) = run_command(["rm", "-rf", ".mypy-stubs"])
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    (text, returncode) = run_command(["stubgen", "yamicache", "-o", ".mypy-stubs"])
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    # (text, returncode) = run_command(["cp", "./.mypy-stubs/yamicache/*", "yamicache/"])
-    (text, returncode) = run_command(
-        "cp ./.mypy-stubs/yamicache/* yamicache/", shell=True
-    )
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    (text, returncode) = run_command(["touch", "yamicache/py.typed"])
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    (text, returncode) = run_command(["poetry", "build"])
-    if returncode:
-        print("ERROR:", text)
-        return
-
-    (text, returncode) = run_command(
-        "rm yamicache/*.pyi yamicache/py.typed", shell=True
-    )
+    (text, returncode) = run_command(["./build.sh"])
     if returncode:
         print("ERROR:", text)
         return
