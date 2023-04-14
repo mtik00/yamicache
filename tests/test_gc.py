@@ -19,7 +19,7 @@ class MyApp(object):
     @c.cached()
     def test1(self, argument, power):
         """running test1"""
-        return argument ** power
+        return argument**power
 
     @c.cached(timeout=2)
     def test2(self):
@@ -71,7 +71,7 @@ def test_gc2(cache_obj):
         cache_obj.test1(8, 0)
 
     item_added = c._from_timestamp(list(c.values())[0].time_added)
-
+    print("item_added:", item_added)
     # Should be cached...
     assert len(c) == 1
 
