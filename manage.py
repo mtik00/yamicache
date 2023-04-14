@@ -7,6 +7,7 @@ This script is used to manage the `yamicache` project.
 # Imports #####################################################################
 import os
 import re
+
 import click
 import requests
 
@@ -14,10 +15,10 @@ import requests
 # import SocketServer
 # import SimpleHTTPServer
 from pkg_resources import parse_version
-from __manage import run_command
-from __manage.docs import serve_docs, build_docs, clean_docs
-from __manage.version import show_versions, rev_version, tag_version
 
+from __manage import run_command
+from __manage.docs import build_docs, clean_docs, serve_docs
+from __manage.version import rev_version, show_versions, tag_version
 
 # Metadata ####################################################################
 __author__ = "Timothy McFadden"
@@ -71,11 +72,45 @@ def build_all():
 
 def build_dist():
     """Build the distribution"""
-    run_command(["rm", "dist/*"])
-    (text, returncode) = run_command(["stubgen", "yamicache", "-o", "mypy-stubs"])
-    print(run_command("cp ./mypy-stubs/yamicache/* yamicache/", shell=True))
+    (text, returncode) = run_command(["rm", "-f", "dist/*"])
+    if returncode:
+        print("ERROR:", text)
+        return
+
+    (text, returncode) = run_command(["rm", "-rf", ".mypy-stubs"])
+    if returncode:
+        print("ERROR:", text)
+        return
+
+    (text, returncode) = run_command(["stubgen", "yamicache", "-o", ".mypy-stubs"])
+    if returncode:
+        print("ERROR:", text)
+        return
+
+    # (text, returncode) = run_command(["cp", "./.mypy-stubs/yamicache/*", "yamicache/"])
+    (text, returncode) = run_command(
+        "cp ./.mypy-stubs/yamicache/* yamicache/", shell=True
+    )
+    if returncode:
+        print("ERROR:", text)
+        return
+
+    (text, returncode) = run_command(["touch", "yamicache/py.typed"])
+    if returncode:
+        print("ERROR:", text)
+        return
+
     (text, returncode) = run_command(["poetry", "build"])
-    print(run_command("rm yamicache/*.pyi yamicache/py.typed", shell=True))
+    if returncode:
+        print("ERROR:", text)
+        return
+
+    (text, returncode) = run_command(
+        "rm yamicache/*.pyi yamicache/py.typed", shell=True
+    )
+    if returncode:
+        print("ERROR:", text)
+        return
 
 
 def deploy():
